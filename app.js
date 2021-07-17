@@ -18,13 +18,21 @@ new Vue({
             ],
 
             showPrices: false,
-            color: "f4f4f4"
+            color: "f4f4f4",
+            value: 0
         }
     },
 
     computed: {
         title() {
             return `${this.name} - ${this.symbol}`;
+        },
+        convertedValue() {
+            if (!this.value) {
+                return 0;
+            }
+
+            return this.value / this.price;
         }
     },
 

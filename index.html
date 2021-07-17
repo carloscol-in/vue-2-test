@@ -14,9 +14,11 @@
             <span v-if="changePercent > 0">Bien</span>
             <span v-else-if="changePercent < 0">Mal</span>
             <span v-else>Cruza los dedos</span>
+            <span v-on:click="toggleShowPrices">{{ showPrices ? "Hide prices" : "Show prices" }}</span>
         </h1>
 
-        <span v-on:click="toggleShowPrices">{{ showPrices ? "Hide prices" : "Show prices" }}</span>
+        <input type="number" v-model="value">
+        <span>{{ convertedValue }}</span>
 
         <ul v-show="showPrices">
             <li

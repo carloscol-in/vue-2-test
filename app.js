@@ -11,10 +11,13 @@ Vue.component('CoinDetail', {
                 <span v-on:click="toggleShowPrices">{{ showPrices ? "Hide prices" : "Show prices" }}</span>
             </h1>
 
-            <img v-bind:src="coin.img" v-bind:alt="name" width="100px" height="100px">
+            <img v-bind:src="coin.img" v-bind:alt="coin.name" width="100px" height="100px">
 
             <input type="number" v-model="value">
-            <span>{{ coin.convertedValue }}</span>
+            <span>{{ convertedValue }}</span>
+
+            <slot name="text"></slot>
+            <slot name="link"></slot>
 
             <ul v-show="showPrices">
                 <li
@@ -45,7 +48,7 @@ Vue.component('CoinDetail', {
                 return 0;
             }
 
-            return this.value / this.price;
+            return this.value / this.coin.price;
         }
     },
 
@@ -76,11 +79,18 @@ new Vue({
                     { day: 'Viernes', value: 9400 },
                     { day: 'Sabado', value: 10000 },
                     { day: 'Domingo', value: 10200 },
-                ],    
-                title: 'Mis viscoins'
+                ],
             },
             color: "f4f4f4",
         }
+    },
+
+    created () {
+        console.log('Created');
+    },
+
+    mounted () {
+        console.log('Mounted');
     },
     
     methods: {
